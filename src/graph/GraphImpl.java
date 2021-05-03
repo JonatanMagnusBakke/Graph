@@ -32,28 +32,28 @@ public class GraphImpl implements Graph{
                 int v1 = Integer.parseInt(vs[0]);
                 int v2 = Integer.parseInt(vs[1]);
                 int w = Integer.parseInt(vs[2]);
-                connect(v1, v2, w);
+                addEdge(v1, v2, w);
             }
 
         }
     }
 
     @Override
-    public int getV() {
+    public int V() {
         return graph.length;
     }
 
     @Override
-    public int getE() {
+    public int E() {
         return count;
     }
 
     @Override
-    public void connect(int v, int i, int w) {
+    public void addEdge(int v, int i, float w) {
         Edge e = new EdgeImpl(v, i, w);
         edges.add(e);
         addEdgeTOList(v, e);
-        addEdgeTOList(i, e);
+        //addEdgeTOList(i, e);
         count++;
     }
 
@@ -67,7 +67,7 @@ public class GraphImpl implements Graph{
     }
 
     @Override
-    public Iterable<Edge> getVerticesConnectedTo(int v) {
+    public Iterable<Edge> adj(int v) {
         return graph[v];
     }
 
@@ -79,15 +79,15 @@ public class GraphImpl implements Graph{
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(getV());
+        res.append(V());
         res.append('\n');
-        res.append(getE());
+        res.append(E());
         res.append('\n');
         for(Edge e : edges())
         {
-            res.append(e.either());
+            res.append(e.from());
             res.append(' ');
-            res.append(e.other(e.either()));
+            res.append(e.to());
             res.append(' ');
             res.append(e.weight());
             res.append('\n');

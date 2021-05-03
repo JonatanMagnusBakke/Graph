@@ -11,21 +11,13 @@ public class EdgeImpl implements Edge{
     }
 
     @Override
-    public int either() {
+    public int from() {
         return a;
     }
 
     @Override
-    public int other(int v) {
-        if(v == a)
-        {
-            return b;
-        }
-        if(v == b)
-        {
-            return a;
-        }
-        throw new RuntimeException(v + " is not a vertex in " + this);
+    public int to() {
+        return b;
     }
 
     @Override
